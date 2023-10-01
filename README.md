@@ -6,4 +6,4 @@ BLE Hacking workshop for BSides Munich
 For this workshop you should have the following tools installed and working:
 - NRF Connect mobile App
 - Wireshark
-- Bleak
+- Python libraries: Bleak, Bless, Asyncio (see requirements.txt)
