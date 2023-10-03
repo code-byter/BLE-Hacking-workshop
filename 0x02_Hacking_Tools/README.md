@@ -1,11 +1,5 @@
-I sniffed the communication during the setup process of my Smart Camera Doorbell.
+I sniffed the communication during the setup process of my Smart Camera Doorbell. You can find the captures from Sniffle in `wireshark_captures/rec_doorbell`
 
 ## Challenge 0x01: Sniffing the communication
 
-Can you leak my WiFi Password
-
-## Challenge 0x02: Cracking
-
-I have encrypted communication. Can you crack it?
-
-TODO: Crackle
+Can you leak my WiFi Password?
