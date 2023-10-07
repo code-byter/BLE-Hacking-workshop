@@ -6,13 +6,17 @@ from bless import (
         GATTAttributePermissions
 )
 
-def my_read_callback(uuid):
-    pass
+#This callback gets passed an object of type BlessGATTCaharateristic
+#        return self.read_request_func(characteristic)
+#  src: https://github.com/kevincar/bless/blob/67aacd4128186f13ea94c713a66271a7fc5e4bf2/bless/backends/server.py#L258
+def my_read_callback(characteristic:BlessGATTCharacteristic):
+    print(f"Returning: {characteristic.value} for uuid: {characteristic.uuid}")
+    return characteristic.value
 
 async def main(loop):
     service_name = "Basic GATT server hwh_"
     server = BlessServer(name=service_name, loop=loop)
-    server.read_request = my_read_callback
+    server.read_request_func = my_read_callback
 
     custom_service_uuid = "ca59d6f6-88fd-4902-8b87-5d97e9d81b93"
     await server.add_new_service(custom_service_uuid)
