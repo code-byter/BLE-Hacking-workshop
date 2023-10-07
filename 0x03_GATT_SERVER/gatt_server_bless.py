@@ -17,7 +17,14 @@ async def main(loop):
     custom_service_uuid = "ca59d6f6-88fd-4902-8b87-5d97e9d81b93"
     await server.add_new_service(custom_service_uuid)
 
-    characteristic_uuid = ""
+    characteristic_uuid = "abcf9298-6d32-4615-a365-61f074114425"
+    char_properties = (GATTCharacteristicProperties.read)
+    gatt_rw_perm = (GATTAttributePermissions.readable|GATTAttributePermissions.writeable)
+    await server.add_new_characteristic(custom_service_uuid,
+                                  characteristic_uuid,
+                                  char_properties,
+                                  b"a randomchar",
+                                  gatt_rw_perm)
 
     await server.start()
     await asyncio.sleep(120)
