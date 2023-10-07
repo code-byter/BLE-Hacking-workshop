@@ -1,3 +1,4 @@
+import asyncio
 from bless import (
         BlessServer,
         BlessGATTCharacteristic,
@@ -8,9 +9,9 @@ from bless import (
 def my_read_callback(uuid):
     pass
 
-def main():
+async def main(loop):
     service_name = "Basic GATT server: hwh_"
-    server = BlessServer(service_name)
+    server = BlessServer(name=service_name, loop=loop)
     server.read_request = my_read_callback
 
     custom_service_uuid = ""
@@ -18,7 +19,7 @@ def main():
 
     characteristic_uuid = ""
 
-    server.start()
+    await server.start()
 
-if __name__ == "__main__":
-    main()
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main(loop))
