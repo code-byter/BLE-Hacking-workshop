@@ -13,16 +13,21 @@ def my_read_callback(characteristic:BlessGATTCharacteristic):
     print(f"Returning: {characteristic.value} for uuid: {characteristic.uuid}")
     return characteristic.value
 
+def my_write_callback(characteristic:BlessGATTCharacteristic, value):
+    print(f"Writting: {value} to uuid: {characteristic.uuid}")
+    characteristic.value = value
+
 async def main(loop):
     service_name = "Basic GATT server hwh_"
     server = BlessServer(name=service_name, loop=loop)
     server.read_request_func = my_read_callback
+    server.write_request_func = my_write_callback
 
     custom_service_uuid = "ca59d6f6-88fd-4902-8b87-5d97e9d81b93"
     await server.add_new_service(custom_service_uuid)
 
     characteristic_uuid = "abcf9298-6d32-4615-a365-61f074114425"
-    char_properties = (GATTCharacteristicProperties.read)
+    char_properties = (GATTCharacteristicProperties.read| GATTCharacteristicProperties.write)
     gatt_rw_perm = (GATTAttributePermissions.readable|GATTAttributePermissions.writeable)
     await server.add_new_characteristic(custom_service_uuid,
                                   characteristic_uuid,
