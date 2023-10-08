@@ -14,5 +14,5 @@ What's the temperature and humidity in my room?
 <details>
   <summary>Hint</summary>
   
-  The sensor values are two bytes long each. The transmitted data is of the format `['temperature', 'humidity', 'time']`
+  The temperature value consists of the first two bytes. To decode it, you can use the `wireshark_captures/decode.py`` python script
 </details>
